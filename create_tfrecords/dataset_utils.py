@@ -141,19 +141,19 @@ def _get_filenames_and_classes(dataset_dir):
   directories = []
   class_names = []
   for filename in os.listdir(dataset_root):
-    path = os.path.join(dataset_root, filename)
-    if os.path.isdir(path):
-      directories.append(os.path.join(dataset_root,path)) 
-      class_names.append(filename)
 
+      path = os.path.join(dataset_root, filename)
+      if os.path.isdir(path):
+          directories.append(path) 
+          class_names.append(path)
   photo_filenames = []
   for directory in directories:
-    for dirpath, dirnames, filenames in os.walk(directory):
-      for filename in filenames:
-        if filename.endswith("jpg") or filename.endswith("jpeg") or filename.endswith("png"):
-        path = os.path.join(dirpath, filename)
-        photo_filenames.append(path)
-
+      for dirpath, dirnames, filenames in os.walk(directory):
+          
+          for filename in filenames:
+              if filename.lower().endswith("jpg") or filename.lower().endswith("jpeg") or filename.lower().endswith("png"):
+                  path = os.path.join(dirpath, filename)
+                  photo_filenames.append(path)
   return photo_filenames, sorted(class_names)
 
 
@@ -174,7 +174,6 @@ def _convert_dataset(split_name, filenames, class_names_to_ids, dataset_dir, tfr
     dataset_dir: The directory where the converted datasets are stored.
   """
   assert split_name in ['train', 'validation']
-
   num_per_shard = int(math.ceil(len(filenames) / float(_NUM_SHARDS)))
 
   with tf.Graph().as_default():
@@ -202,7 +201,9 @@ def _convert_dataset(split_name, filenames, class_names_to_ids, dataset_dir, tfr
 
                 class_id = 0
                 for class_name in class_names_to_ids.keys():
-                  if filenames[i].startswith(class_name):
+                  print(filenames[i])
+                  print(class_name)
+                  if filenames[i].startswith(class_name) :
                     class_id = class_names_to_ids[class_name]
                     break 
 
