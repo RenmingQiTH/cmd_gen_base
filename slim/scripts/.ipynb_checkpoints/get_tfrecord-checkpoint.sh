@@ -1,0 +1,1 @@
+python ../create_tfrecords/create_tfrecord.py --validation_size=0.1 --dataset_dir=/home/centos/new_ensemble_19_for_rcmp/data --tfrecord_filename=rcmp

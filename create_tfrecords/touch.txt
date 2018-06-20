@@ -1,0 +1,1 @@
+python create_tfrecord.py --validation_size=0.1  ---dataset_dir=/home/renming.qi/flower_photos --tfrecord_filename=ex

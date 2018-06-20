@@ -1,0 +1,1 @@
+~/anaconda3/envs/FRCNN/bin/python create_tfrecord.py --validation_size=0.1 --dataset=/home/centos/new_ensemble_19/data --tfrecord_filename=three_flower
